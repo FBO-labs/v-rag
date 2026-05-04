@@ -1,0 +1,126 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  display: flex;
+  height: 100vh;
+  font-family: system-ui, sans-serif;
+}
+
+/* --- Sidebar --- */
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e5e5e5;
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.doc-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  list-style: none;
+}
+
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.doc-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-item.inactive { opacity: 0.4; }
+
+.sidebar-footer {
+  padding: 10px 16px;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* --- Main --- */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 32px;
+}
+
+/* --- Indicator --- */
+
+.indicator-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.indicator {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.indicator-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.indicator-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #111;
+  transition: opacity 0.3s;
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);    opacity: 0.6; }
+  100% { transform: scale(1.45); opacity: 0;   }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.08); }
+}
+
+.indicator.listening .indicator-ring {
+  border-color: #111;
+  animation: pulse-ring 1.2s ease-out infinite;
+}
+
+.indicator.listening .indicator-circle {
+  animation: breathe 1.2s ease-in-out infinite;
+}
+
+.indicator.processing .indicator-circle { opacity: 0.25; }
+
+/* --- Output --- */
+
+.output {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

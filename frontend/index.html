@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonara</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Documents</span>
+      <button class="upload-btn" id="upload-btn">+ Upload PDF</button>
+      <input type="file" id="file-input" accept=".pdf" hidden />
+    </div>
+    <ul class="doc-list" id="doc-list"></ul>
+    <div class="sidebar-footer">
+      <span class="doc-count" id="doc-count">0 documents</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="indicator-wrap">
+      <div class="indicator" id="indicator">
+        <div class="indicator-ring"></div>
+        <div class="indicator-circle"></div>
+      </div>
+      <span class="indicator-status" id="indicator-status">idle</span>
+    </div>
+
+    <section class="output" id="output" hidden>
+      <div class="query-box">
+        <span class="output-label">Last query</span>
+        <p class="query-text" id="query-text"></p>
+      </div>
+      <div class="results-box">
+        <span class="output-label">Results</span>
+        <ul class="results-list" id="results-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

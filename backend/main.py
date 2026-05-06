@@ -8,6 +8,11 @@ app = FastAPI()
 UPLOAD_DIR = "data/pdfs"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+@app.get("/files")
+def get_files():
+    files = os.listdir(UPLOAD_DIR)
+    return {"files": files}
+
 @app.post("/upload")
 async def upload(file: UploadFile = File(...)):
     file_path = os.path.join(UPLOAD_DIR, file.filename)

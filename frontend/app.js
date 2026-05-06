@@ -26,8 +26,14 @@ function renderDocList() {
     name.className  = "doc-name";
     name.textContent = doc.name;
 
+    const deleteBtn       = document.createElement("span");
+    deleteBtn.className   = "doc-delete";
+    deleteBtn.textContent = "✕";
+    deleteBtn.addEventListener("click", () => deleteDoc(index));
+
     li.appendChild(checkbox);
     li.appendChild(name);
+    li.appendChild(deleteBtn);
     docList.appendChild(li);
   });
 
@@ -37,6 +43,15 @@ function renderDocList() {
 
 function toggleDoc(index) {
   docs[index].active = !docs[index].active;
+  renderDocList();
+}
+
+async function deleteDoc(index) {
+  const doc = docs[index];
+
+  await fetch(`/files/${doc.name}`, { method: "DELETE" });
+
+  docs.splice(index, 1);
   renderDocList();
 }
 
